@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>学习数组</title>
+        <script type="text/javascript">
+        var arr=['a','b','c','d','e','f',1,2,4,3,23];
+        console.log("arr数组的长度为:"+arr.length+"\narr的内容为:"+arr);
+        arr.length=14;
+        console.log("arr数组的新长度为:"+arr.length+"\narr的内容为:"+arr);
+        //indexOf来搜索一个指定的元素位置
+        console.log("arr.indexOf(3)的元素对应的索引是:"+arr.indexOf(3));
+        console.log("arr.indexOf(4)的元素对应的索引是:"+arr.indexOf(4));
+        console.log("arr.indexOf(\"hello\")的元素对应的索引是:"+arr.indexOf("hello"));
+        //截取数组slice
+
+        var arrSlice=arr.slice(3, 7);
+        console.log("用arr.slice(3,7)截取的新数组为:"+arrSlice);
+        console.log("用arr.slice(6)截取的新数组为:"+arr.slice(6));
+        //利用push向数组的末尾添加若干元素，pop将数组最后一个元素删掉
+        console.log("利用arr.push('sd','sdf')向数组添加元素后数组的新长度:"+arr.push('sd','sdf')+"\n新的arr数组内容:"+arr);
+        console.log("利用arr.push('sdds','sdf',1)向数组添加元素数组的新长度:"+arr.push('sdds','sdf',1)+"\n新的arr数组内容:"+arr);
+        console.log("利用pop将数组最后一个元素删掉:"+arr.pop()+"\n新的arr数组内容:"+arr);
+        //利用unshift向数组的头部添加若干元素,shift将数组第一个元素删掉
+        console.log("利用unshift向数组头部添加元素后数组新长度:"+arr.unshift('123','234')+"\n新的arr数组内容:"+arr);
+        console.log("利用shift将数组头部元素删掉:"+arr.shift()+"\n新的arr数组内容:"+arr);
+        //sort对数组进行排序
+        console.log("利用sort对数组进行排序后的结果为:"+arr.sort());
+        //利用reverse对数组进行反转
+        console.log("利用reverse对数组进行反转后的结果为:"+arr.reverse());
+        //利用splice修改数组元素
+        console.log("在调用splice方法之前的arr内容:"+arr+"\narr数组的长度为:"+arr.length);
+        console.log("第一个元素的内容:"+arr[0]+"利用splice删除前5个元素，不添加元素的结果为:"+arr.splice(0,4)+","+arr+"\n数组长度为:"+arr.length);
+        console.log("利用splice删除前4个元素，然后再添加2个元素后的结果为:"+arr.splice(0,4,56,63,78,780)+","+arr+"\n数组长度为:"+arr.length);
+        var arr1=['342',21,230];
+        console.log("利用concat将arr和arr1数组连成一个新的数组:"+arr.concat(arr1));
+        //join用法
+        console.log("利用join()方法将arr数组转成字符串，结果为:"+arr.join("-"));
+        //多维数组
+        var arrs=["12",23,34,["ds","dsfe","wq",23,["d",23,345,54]]];
+        //将多维数组转成一维数组
+        var str=arrs.join(",");
+        console.log("原多维数组arrs的内容为:"+arrs+"利用join方法转化成字符串结果为:"+str);
+        console.log("利用字符串的split将该字符串转化成1维数组:"+str.split(","));
+        //利用索引查找500这个值
+        var arr = [[1, 2, 3], [400, 500, 600], '-'];
+        arr=arr.join(",");
+        arr=arr.split(",");
+        var i=0;
+        for(i in arr){
+            if(arr[i]==500)
+                console.log("500对应的索引值为:"+i);
+        }
+        //判断b字符串中的每个字符，在a中是否存在
+        var a='adfdfkjri';
+        var b="djs";
+        var arrNew2=b.split("");
+        for( i in arrNew2){
+            if(a.indexOf(arrNew2[i])){
+                console.log("djs在a字符串中对应的索引位置为:"+i);
+            }else{
+                console.log("未找到");
+            }
+        }
+        //移除数组 arr 中的所有值与 item 相等的元素，不直接在给定的 arr 数组上进行操作，并将结果返回
+         function removeArr(arr, item) {
+            var newArr=new Array();
+            var i,len=arr.length;
+            for(i=0;i<len;i++){
+                if(item!=arr[i]){
+                    newArr.push(arr[i]);
+                }
+            }
+            console.log(newArr);
+        }
+        removeArr([1,2,3,4,2],2);
+        //移除数组 arr 中的所有值与 item 相等的元素，直接在给定的 arr 数组上进行操作，并将结果返回
+        function removeWithoutCopy(arr, item) {
+            var i,len=arr.length;
+            for(i=0;i<len;i++){
+                if(item==arr[i]){
+                    arr.splice(i,1);
+                    i--;
+                }
+            }
+            return arr;
+        }
+        removeWithoutCopy([1, 2, 2, 3, 4, 2, 2], 2);
+        function curtail(arr) {
+            var newArr=new Array();
+            var i,len=arr.length;
+            for(i=1;i<len;i++){
+                newArr.push(arr[i]);
+            }
+            console.log(newArr);
+            return newArr;
+        }
+        curtail([1,2,3,5,6]);
+        function insertArr(arr, item, index) {
+            var i,len=arr.length;
+            var newArr=new Array();
+            for(i=0;i<len;i++){
+                newArr.push(arr[i]);
+            }
+            newArr.splice(index,0,item);
+            console.log(newArr);
+            return newArr;
+        }
+        insertArr([1,2,3,5],'de',3);
+//找出数组 arr 中重复出现过的元素
+console.log("找出数组 arr 中重复出现过的元素");
+    function duplicates(arr) {
+        var new_arr = arr.sort();//先把arr排序
+        var res = [] ;//目标容器
+        for( var i = 0 ; i < new_arr.length ; i++){
+            if(new_arr[i] == new_arr[i+1] &&
+            new_arr[i] !=new_arr[i-1]){//判断是否重复,是否已经放入容器
+                res.push(new_arr[i]);
+            }
+        }
+         console.log(res);
+        return res;
+    }
+    duplicates([1, 2, 4, 4, 3, 3, 1, 5, 3]);
+        </script>
+
+    </head>
+    <body>
+    </body>
+</html>

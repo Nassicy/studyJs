@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>闭包</title>
+        <script type="text/javascript">
+        function calSum(arr){
+            var sum=function(){
+                return arr.reduce(function(x,y){
+                    return x+y;
+                })
+            }
+            return sum;
+        }
+        var f=calSum([1,2,3,4,5]);
+        console.log("f()的值为:"+f());
+        console.log("未用闭包时的值:")
+        function count() {
+            var arr = [];
+            for (var i=1; i<=3; i++) {
+                arr.push(function () {
+                    return i * i;
+                });
+            }
+            return arr;
+        }
+        var results = count();
+        var f1 = results[0];
+        var f2 = results[1];
+        var f3 = results[2];
+        console.log("f1的值为:"+f1());
+        console.log("f2的值为:"+f2());
+        console.log("f3的值为:"+f3());
+        console.log("用闭包之后得到的结果:");
+        function calSqrt() {
+            var arr = [];
+            for (var i=1; i<=3; i++) {
+                arr.push((function(n){
+                    return function(){
+                        return n*n;
+                    }
+                })(i))
+            }
+            return arr;
+        }
+
+        var result = calSqrt();
+        var f1 = result[0];
+        var f2 = result[1];
+        var f3 = result[2];
+        console.log("f1的值为:"+f1());
+        console.log("f2的值为:"+f2());
+        console.log("f3的值为:"+f3());
+        console.log("这个demo演示的是闭包和this的问题,该this指的是window对象")
+        var name = "The Window";
+    　　var object = {
+    　　　　name : "My Object",
+    　　　　getNameFunc : function(){
+    　　　　　　return function(){
+    　　　　　　　　return this.name;
+    　　　　　　};
+    　　　　}
+    　　};
+        console.log("object.getNameFunc()()的值为:"+object.getNameFunc()());
+        console.log("该demo将this指代规划好了,该this指的是object对象");
+        var name = "The Window";
+    　　var object = {
+    　　　　name : "My Object",
+    　　　　getNameFunc : function(){
+                var that=this;
+    　　　　　　return function(){
+    　　　　　　　　return that.name;
+    　　　　　　};
+    　　　　}
+    　　};
+    　　console.log("object.getNameFunc()()的值为:"+object.getNameFunc()());
+        var a=(function(x){
+            return x*x;
+        }(3));
+        console.log("a的值为:"+a);
+        /*function checkClosure(){
+            var str="JiHyo";
+            setTimeout(function(){
+                console.log(str);
+                console.log("这是一个计时器匿名函数");
+            }, 2000);
+        }
+        console.log("checkClosure()的值为:"+checkClosure());
+        function forTimeout(x,y){
+            console.log(x+y);
+        }
+        function delay(x,y,time){
+            setTimeout(function(){
+                forTimeout(x,y)
+            },time);
+        }
+        console.log("delay(3,4,2000)的值为:"+delay(3,4,2000));*/
+
+        ///////////////
+        //匿名函数和闭包的结合 //
+        ///////////////
+        var oEvent={};
+        (function(){
+            var addEvent=function(){
+              console.log("匿名函数和闭包结合1");
+            };
+            function removeEvent(){
+                console.log("匿名函数和闭包结合2");
+            };
+            oEvent.addEvent=addEvent;
+            oEvent.removeEvent=removeEvent;
+        })();
+        // console.log("oEvent调用匿名函数:"+oEvent.addEvent(document.getElementById("#id"),'click',function(){}))
+        //////
+        // console.log("demo5"); //
+        //////
+        var outer = null;
+        (function(){
+            var one = 1;
+            function inner (){
+                one += 1;
+                console.log(one);
+            }
+            outer = inner;
+        })();
+        console.log("直接调用outer的值为:"+outer());
+        console.log("直接调用outer的值为:"+outer());
+        console.log("直接调用outer的值为:"+outer());
+        var s1=outer;
+        var s2=outer;
+        console.log("用其他变量s1=outer之后，调用s1()的值为:"+s1());
+        console.log("用其他变量s1=outer之后，调用s1()的值为:"+s1());
+        console.log("用其他变量s2=outer之后，调用s2()的值为:"+s2());
+        console.log("函数是匿名函数和普通函数在调用时的区别");
+        function Foo() {
+            var i = 0;
+            return function() {
+                console.log(i++);
+            }
+        }
+        var f1 = Foo();
+        var f2 = Foo();
+        console.log("用其他变量f1=Foo()之后，调用f1的值为:"+f1());
+        console.log("用其他变量f1=Foo()之后，调用f1的值为:"+f1());
+        console.log("用其他变量f2=Foo()之后，调用f2的值为:"+f2());
+
+
+        /////////////////
+        //在for循环中的闭包问题 //
+        /////////////////
+        function fun(n,o){
+            console.log(o);
+            return {
+                fun:function(m){
+                    return fun(m,n);
+                }
+            }
+        }
+        var a = fun(0); a.fun(1); a.fun(2); a.fun(3);//undefined,0,0,0
+        var b = fun(0).fun(1).fun(2).fun(3);//undefined,0,1,2
+        var c = fun(0).fun(1); c.fun(2); c.fun(3);//undefined,0,1,1
+		(function a(){
+			a=1;console.log("a的值为:"+a);
+		})()
+
+        </script>
+    </head>
+    <body>
+        <ul>
+            <li>产品一</li>
+            <li>产品二</li>
+            <li>产品三</li>
+            <li>产品四</li>
+        </ul>
+    </body>
+    <script type="text/javascript">
+        var lists = document.getElementsByTagName('li');
+      /*  for(var i=0;i<lists.length;i++){
+            lists[i].onclick  = function(){
+                console.log("未使用闭包时得到的i值为:"+i);
+            };
+        }*/
+      /*  for(var i=0;i<lists.length;i++){
+            (function(index){
+                lists[index].onclick  = function(){
+                console.log("使用闭包时得到的i值为:"+index);
+                };
+            })(i);
+        }*/
+        for(var i = 0, len = lists.length; i < len; i++){
+            lists[ i ].$$index = i;    //通过在Dom元素上绑定$$index属性记录下标
+            lists[ i ].onmouseover = function(){
+                console.log("使用闭包时得到的i值为:"+index);
+            };
+        }
+
+       // 5.闭包 下面五段代码分别输出什么？并且什么时候输出什么？
+
+        for(var i = 0; i < 5; i++) {
+            console.log(i);
+        }
+        for(var i = 0; i < 5; i++) {
+            setTimeout(function() {
+                console.log(i);
+            }, 1000 * i);
+        }
+        for(var i = 0; i < 5; i++) {
+            (function(i) {
+                setTimeout(function() {
+                    console.log(i);
+                }, i * 1000);
+            })(i);
+        }
+        for(var i = 0; i < 5; i++) {
+            (function() {
+                setTimeout(function() {
+                    console.log(i);
+                }, i * 1000);
+            })(i);
+        }
+
+        for(var i = 0; i < 5; i++) {
+            setTimeout((function(i) {
+                console.log(i);
+            })(i), i * 1000);
+        }
+    </script>
+</html>

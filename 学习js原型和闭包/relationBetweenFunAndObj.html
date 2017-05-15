@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>函数和对象之间的关系</title>
+        <script type="text/javascript">
+
+            //////////
+            //函数是对象 //
+            //////////
+            var fn=function(){};
+            console.log(fn instanceof Object);
+
+            ////////////////
+            //对象可以通过函数来创建 //
+            ////////////////
+
+            function Fn(){
+                this.name='Nassicy';
+                this.age='24';
+            }
+            var fn1=new Fn();
+            console.log(fn1);
+            console.log("fn1.name:"+fn1.name+",this.name:"+this.name);
+
+            ///////////////
+            //下述这种创建方式是语法糖创建法//
+            ///////////////
+            var obj={a:1,b:20};
+            var arr=[5,'x',true];
+
+            //////////////
+            //上述创建方式实际为 //
+            //////////////
+            var obj=new Object();
+            obj.a=1;
+            obj.b=20;
+            var arr=new Array();
+            arr[0]=5;
+            arr[1]='x';
+            arr[2]=true;
+
+            console.log("object的类型为:"+typeof(Object));
+            console.log("Array的类型为："+typeof(Array));
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

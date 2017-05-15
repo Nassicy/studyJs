@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>学习数据类型</title>
+        <script type="text/javascript">
+            //////////
+            // 八进制数
+            // 八进制第一位必须是0，然后是八进制数字序列(0-7),如果超出范围，前面的0将自动忽略，后面的数值当做十进制解析
+            // 八进制在严格模式下是无效的，会导致js引擎抛出错误 //
+            //////////
+            //在进行算术计算时，所有八进制和十六进制表示的数值最终都被转化成十进制数值//
+
+            var octalNum1 = 70;  //八进制的56
+            var octalNum2 = 079; //无效的八进制数值 -- 解析成 79
+            var octalNum3 = 08;  //无效的八进制数值 -- 解析成8
+
+            var hexNum1 = 0xA;   //十六进制的10
+            var hexNum2 = 0x1f;  //十六进制的31
+
+
+            var floatNum1 = 1.1;
+            var floatNum2 = 0.1;
+            var floatNum3 = .1;   //有效，但不推荐
+            var floatNum4 = 1.;   //小数后面没有数字---自动解析为1
+            var floatNum5 = 10.0;  //整数  --解析成10
+            var floatNum6 = 3.125e7; //等于31250000 ，e表示法的实际含义是3.125*10^7
+
+
+            /*NaN：*/
+            //////////////////////
+            //1.凡是涉及NaN的操作都会返回NaN //
+            //2.NaN与任何值都不相等，包括其本身 //
+            //isNaN函数特点
+            //1.可接受一个参数，如果该参数可以被转化成数值，则为false，
+            //如果不能转化成数值，函数返回true//
+            //////////////////////
+
+            console.log("NaN==NaN:"+NaN == NaN);          //false
+            console.log("isNaN(NaN):"+isNaN(NaN));        //true
+            console.log("isNaN(10):"+isNaN(10));          //false
+            console.log("isNaN('10'):"+isNaN('10'));      //false
+            console.log("isNaN('blue'):"+isNaN('blue'));      //true
+            console.log("isNaN(true):"+isNaN(true));      //false
+            console.log("isNaN(null):"+isNaN(null));      //false,null可以转化成0
+            console.log("isNaN(undefined):"+isNaN(undefined));      //true
+            console.log("isNaN('a'):"+isNaN('a'));      //true
+            console.log("Number(null):"+Number(null));    //0
+            console.log("Number(undefined):"+Number(undefined));    //NaN
+            console.log("Number('COLOR'):"+Number("COLOR"));    //NaN
+            console.log("Number(''):"+Number(""));    //0
+
+            //parseInt解析
+            var num1 = parseInt("1234blue");        //1234
+            var num1 = parseInt("");               //NaN
+            var num1 = parseInt("0xA");            //10
+            var num1 = parseInt("070");               //70
+            var num1 = parseInt("70");               //70
+            var num1 = parseInt("0XF");               //15
+
+            //parseFloat会将十六进制格式的字符串始终转换成0
+            var floatNum1 = parseFloat("0xa");         //0
+
+
+            var a = 10;
+            sayHi();
+            function sayHi(){
+                var a;
+                a = a + 10;
+                alert(a);
+                return a;
+            }
+            alert(a);
+            alert(sayHi()+10);
+        </script>
+
+
+    </head>
+    <body>
+    </body>
+</html>

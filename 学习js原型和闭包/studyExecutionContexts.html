@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>执行上下文</title>
+        <script type="text/javascript">
+            console.log(this);
+
+            ////////////////////////////////////////////////////////////////
+            //执行上下文环境:在执行代码之前，把将要用到的所有的变量都事先拿出来，有的直接赋值了，有的先用undefined占个空。 //
+            ////////////////////////////////////////////////////////////////
+            /////////
+            //函数声明 //
+            /////////
+            console.log(f1);//function f1(){}
+            function f1(){}//函数声明
+
+
+            //////////
+            //函数表达式 //
+            //////////
+
+            console.log(f2);//undefined
+            var f2=function(){} //函数表达式
+
+            function fn(x){
+                console.log(arguments);
+                console.log(x);
+            }
+            fn(10);
+
+            var a=10;
+            function fun(){
+                console.log(a);
+            }
+
+            function bar(f){
+                var a=20;
+                f();
+            }
+            bar(fun);
+
+
+    // 变量、函数表达式——变量声明，默认赋值为undefined；
+    // this——赋值；
+    // 函数声明——赋值；
+
+        </script>
+
+
+    </head>
+    <body>
+    </body>
+</html>

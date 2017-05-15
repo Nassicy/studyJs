@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>循环和判断</title>
+        <script type="text/javascript">
+            var i=0,sum=0;
+            for(i=0;i<1000;i++){
+                sum +=i;
+            }
+            console.log("1到1000的和为:"+sum);
+            var m = new Map();
+            var s = new Set();
+            console.log('你的浏览器支持Map和Set！');
+            var stu=new Map([['Michael',90],['Bob',76],['Nassicy',99]]);
+            console.log(stu);
+            console.log("map键值对得Nassicy的得分:"+stu.get("Nassicy"));
+            stu.set("adma",80);
+            console.log("adma的分数为:"+stu.get("adma"));
+            var a=['a','bf','gh'];
+            var ma=new Map([['as',23],['sdw',10],['fjg',32]]);
+            var s=new Set(['fg',123,342]);
+            //遍历Array
+            for(var x of a){
+                console.log("用for(var x of a)来遍历a数组结果为:"+x);
+            }
+            //遍历map
+            for(var x of ma){
+                console.log("用for(var x of ma)来遍历ma的map集合数组结果为:"+x);
+            }
+            //遍历set
+            for(var x of s){
+                console.log("用for(var x of s)来遍历s Set集合结果为:"+x);
+            }
+            //用iterable内置的forEach来遍历数组
+            a.forEach(function(element,index,array){
+                //element:指向当前元素值
+                //index:指向当前索引
+                //array:指向Array对象本身
+                console.log("用内置的foreach遍历a数组的结果为"+element);
+            })
+            ma.forEach(function(value,key,map){
+                console.log("用内置的foreach遍历m的Map集合结果为"+value);
+            })
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

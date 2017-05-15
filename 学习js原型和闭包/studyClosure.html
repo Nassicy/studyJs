@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>学习闭包</title>
+        <script type="text/javascript">
+        //自由变量：凡是跨了自己的作用域的变量都叫自由变量。只有自由变量才需要通过作用域链去寻找
+
+            //函数作为返回值
+            function fn(){
+                var max=10;
+                return function  bar(x){
+                    if(x>max){
+                        console.log(x);
+                    }
+                };
+            };
+            var f1=fn();
+            f1(15);
+
+            //函数作为参数被传递
+            //
+            var max=11,
+                test=function(x){
+                    if(x > max){
+                        console.log(x);
+                    }
+                };
+            (function(f){
+                var max=100;
+                f(150);
+            })(test);
+
+            var max = 10,
+            fn = function (x) {
+                if (x > max) {
+                console.log(x)
+                }
+            };
+            (function (f) {
+                var max = 100;
+                f(15);
+            })(fn)
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>关于原型链，js作用域，闭包，this等的测试题</title>
+    <script type="text/javascript">
+    function Foo() {
+        getName = function() {
+            console.log(1);
+        };
+        return this;
+    }
+    Foo.getName = function() {
+        console.log(2);
+    };
+    Foo.prototype.getName = function() {
+        console.log(3);
+    };
+    var getName;
+    getName = function() {
+        console.log(4);
+    };
+
+    function getName() {
+        console.log(5);
+    }
+
+
+    //请写出以下输出结果：
+
+    Foo.getName(); //2
+    getName(); //5       4
+    /*解释如下：*/
+    //getName=function(){alert(4)}
+    //function getName(){alert(5)}
+    //实际执行情况如下：
+    //var getName;                       第一步，提升变量声明
+    //function getName(){alert(5)};      第二步，提升函数表达式的声明（直接赋值），覆盖var的声明
+    //getName=function(){alert(4)};      第三步，赋值再次覆盖function getName声明
+    ////////////////////////////////////////////////////////////////////
+    Foo().getName(); //1
+    /*解释如下*/
+    //此题考了变量作用域问题，还有this指向问题
+    //Foo函数的第一句  getName = function () { alert (1); };  是一句函数赋值语句，注意它没有var声明，所以先向当前Foo函数作用域内寻找getName变量，没有。再向当前函数作用域上层，即外层作用域内寻找是否含有getName变量，找到了，也就是第二问中的alert(4)函数，将此变量的值赋值为 function(){alert(1)}。
+    //此处实际上是将外层作用域内的getName函数修改了。
+
+    getName(); //4       1
+    /*解释如下*/
+    //var getName=function(){alert(4)}在上一题中已经被修改成alert(1)
+
+    new Foo.getName(); //3       2
+    /*解释如下：*/
+    //根据js的优先级来说，相当于 new (Foo.getName)();
+    //
+
+    new Foo().getName(); //1       3
+    /*解释如下：*/
+    //根据js的优先级来说，相当于 (new Foo()).getName();
+    new new Foo().getName(); //3
+    /*解释如下：*/
+    //根据js的优先级来说，相当于 new (new Foo()).getName)();
+    //
+
+    function fun(n, o) {
+        console.log(o);
+        return {
+            fun: function(m) {
+                return fun(m, n);
+            }
+        };
+    }
+    var a = fun(0);// undefined
+    a.fun(1);//0
+    a.fun(2);//0
+    a.fun(3); //0
+    var b = fun(0).fun(1).fun(2).fun(3); //undefined,?,?,?
+    var c = fun(0).fun(1);
+    c.fun(2);
+    c.fun(3); //undefined,?,?,?
+    </script>
+</head>
+
+<body>
+<div style="width:400px; height:200px;">
+    <span style="float:left; width:auto; height:100%;">
+      <i style="position:absolute;float:left; width:100px; height:50px;">hello</i>
+    </span>
+</div>
+<div onclick="alert(12)" style="width:100px;height:100px;background:#000;"></div>
+<img src="" alt="" onerror="alert(234)">
+<iframe src="javascript:alert(435)"></iframe>
+</body>
+
+</html>

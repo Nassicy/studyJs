@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <canvas id="test-shape-canvas">
+        </canvas>
+        <canvas id="studyCanvas">
+
+        </canvas>
+    </body>
+    <script type="text/javascript">
+        var canvas=document.getElementById('test-shape-canvas');
+        var ctx=canvas.getContext("2d");
+        ctx.clearRect(0, 0, 200, 200);
+        ctx.fillStyle="#ddd";
+        ctx.fillRect(10,10,130,130);
+        var path=new Path2D();
+        path.arc(75, 75, 50, 0, Math.PI*2, true);
+        path.moveTo(110,75);
+        path.arc(75, 75, 35, 0, Math.PI, false);
+        path.moveTo(65, 65);
+        path.arc(60, 65, 5, 0, Math.PI*2, true);
+        path.moveTo(95, 65);
+        path.arc(90, 65, 5, 0, Math.PI*2, true);
+        ctx.strokeStyle = '#0000ff';
+        ctx.stroke(path);
+            var canvasTest=document.getElementById('studyCanvas');
+            var ctx1=canvasTest.getContext("2d");
+            ctx1.fillWidth=1.0;
+            ctx1.fillStyle="#ddd";
+            ctx1.fillRect(0, 0, 300, 300);
+            ctx1.beginPath();
+            ctx1.arc(100, 100,40 , 0, Math.PI*2,true);
+            ctx1.fillStyle="#fff";
+            ctx1.fill();
+            ctx1.arc(99, 40, 30,0, Math.PI*2, true);
+            ctx1.shadowOffsetX=4;
+            ctx1.shadowOffsetY=4;
+            ctx1.shadowBlur=5;
+            ctx1.shadowColor="rgba(0,0,0,0.5)";
+            ctx1.fill();
+            var myGradient=ctx1.createLinearGradient(30, 40, 150, 160);
+            ctx1.beginPath();
+            var path=new Path2D();
+            path.arc(86,35,5,0,Math.PI*2,true);
+            path.moveTo(115,35);
+            path.arc(110,35,5,0,Math.PI*2,true);
+            path.moveTo(117,44);
+            path.arc(98,44,18,0,Math.PI,false);
+            ctx1.fillStyle="#090909";
+            ctx1.fill();
+            ctx1.strokeStyle="#0000FF";
+            ctx1.shadowOffsetX=0;
+            ctx1.shadowOffsetY=0;
+            ctx1.stroke(path);
+            ctx1.beginPath();
+            ctx1.moveTo(140,90);
+            ctx1.lineTo(190,106);
+            ctx1.moveTo(60,90);
+            ctx1.lineTo(10,110);
+            ctx1.lineWidth=2.0;
+            ctx1.strokeStyle="#8f4f1f";
+            ctx1.stroke();
+        </script>
+</html>

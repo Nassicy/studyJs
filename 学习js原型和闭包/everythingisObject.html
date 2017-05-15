@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>一切皆对象</title>
+        <script type="text/javascript">
+        function show(x){
+            console.log(typeof(x));
+            console.log(typeof(10));
+            console.log(typeof('abc'));
+            console.log(typeof(true));
+
+            console.log(typeof(function(){}));
+
+            console.log(typeof([1,'2','ad']));
+            console.log(typeof([{a:10},{b:'23'}]));
+            console.log(typeof(null));
+            console.log(typeof (new Number(12)));
+        }
+        show();
+
+        //////////////////
+        //js的对象可以任意扩展属性 //
+        //////////////////
+
+        var obj={
+            a:10,
+            b:function(x){
+                console.log(this.a+x);
+            },
+            c:{
+                name:'nassicy',
+                year:1993
+            }
+        };
+        console.log(obj);
+
+        /////////////////
+        //函数，数组定义属性的方法 //
+        /////////////////
+
+        var fn=function(){
+            console.log(123);
+        };
+
+        fn.a=10;
+        fn.b=function(){
+           /* var x=23;
+            console.log(x);
+            debugger*/
+            console.log(1234);
+        };
+
+        fn.c={
+            name:'nassicy',
+            year:1993
+        }
+        console.log(typeof(fn))
+        console.log("fn.b()的值:"+fn.b);
+
+        //////////////////////////
+        //一切（引用类型）都是对象，对象是属性的集合 //
+        //////////////////////////
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

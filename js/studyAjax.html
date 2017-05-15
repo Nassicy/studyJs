@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css" media="screen">
+            #showInfo{
+                border:1px solid #ddd;
+                height:400px;
+                width:600px;
+                margin:20px auto;
+            }
+
+        </style>
+        <script type="text/javascript">
+            function success(text){
+                var textarea=document.getElementById('showInfo');
+                textarea.value=text;
+            }
+            function fail(code){
+                var textarea=document.getElementById('showInfo');
+                textarea.value="Error code"+code;
+            }
+            function getMethod(){
+                var request=new XMLHttpRequest();
+                request.onreadystatechange=function(){
+                    if(request.readyState===4){
+                        if(request.status===200){
+                            return success(request.responseText);
+                        }else{
+                            return fail(request.status);
+                        }
+                    }else{
+                        //http请求还在继续
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div id="showInfo"></div>
+        <button type="button" onclick="getMethod()">请求</button>
+    </body>
+</html>

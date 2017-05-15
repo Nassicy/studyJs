@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>es6的箭头函数</title>
+        <script type="text/javascript">
+        var fn=x=>x*x;
+        console.log("x=>x*x在x=3时得到的值:"+fn(3));
+        var fns=x=>{
+            if(x>0){
+                return x*x;
+            }else if(x<0){
+                return -x*x;
+            }
+        }
+        console.log("x=-3时fns的值为"+fns(-3));
+        var obj = {
+            birth: 1990,
+            getAge: function () {
+               //var b = this.birth;
+                var fn=()=>new Date().getFullYear()-this.birth;
+                return fn();
+            }
+        };
+        console.log("obj.getAge()的值为:"+obj.getAge());
+        console.log("call方法和箭头函数相结合");
+        var xiaoming={
+            birth:1993,
+            getAge:function(year){
+                var b=this.birth;
+                var fn=(y)=>y-this.birth;
+                return fn.call({birth:2000},year);
+            }
+        }
+        console.log("xiaoming.getAge()的值为:"+obj.getAge(2016));
+    </script>
+    </head>
+    <body>
+    </body>
+</html>

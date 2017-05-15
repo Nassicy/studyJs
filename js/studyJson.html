@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>json</title>
+        <meta charset="utf-8">
+        <script type="text/javascript">
+        var xiaoming={
+            name:'小明',
+            age:12,
+            gender:true,
+            height:1.65,
+            grade:null,
+            'middle-school':'"W3C\" middle School',
+            skills:['JavaScript','Java','Python','Lisp']
+        };
+        ///////////////////////////////////////
+        // var stu=JSON.stringify(xiaoming); //
+        ///////////////////////////////////////
+        var stu=JSON.stringify(xiaoming,null,' ');
+        //////////////////////////////////////////////////
+        /////////////////////////////////////////////////////
+        // JSON.stringify(object[, replacer][, space]); //
+        //  第一个参数是对象//
+        //  第二个参数用于控制如何筛选对象的键值,如果我们只想输出指定的属性，可以传入Array
+        //  还可以传入一个函数，这样对象的每个键值对都会被函数先处理//
+        /////////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+        console.log("将xiaoming格式化成json格式"+stu);
+        var xiaohong={
+            name:'xiaohong',
+            gender:true,
+            height:1.65,
+            grade:null,
+            age:14,
+            'middle-school':'"W3C\" middle School',
+            skills:['JavaScript','Java','Python','Lisp'],
+            toJSON:function(){
+                return{
+                    'Name':this.name,
+                    'Age':this.age
+                };
+            }
+        }
+        console.log(JSON.stringify(xiaohong));
+        /////////
+        //反序列化 //
+        //拿到一个JSON格式的字符串，我们直接用JSON.parse()把它变成一个JavaScript对象
+        /////////
+        console.log(JSON.parse('[1,2,3,true]'));
+        console.log(JSON.parse('{"name":"xiaoming","age":"14"}'));
+        console.log(JSON.parse(true));
+        //////////////////////////////////
+        //JSON.parse()接收一个函数，用来转换解析出的属性 //
+        //////////////////////////////////
+        var stu=JSON.parse('{"name":"xiaoming","age":"13"}',function(key,value){
+            if(key=="name"){
+                return value+"同学";
+            }
+            return value;
+        })
+        console.log(stu);
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

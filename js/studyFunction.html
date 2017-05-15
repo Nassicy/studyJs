@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>function</title>
+        <script type="text/javascript">
+        function abs(x){
+            if(typeof x!=='number'){
+                throw 'not a Number';
+            }
+            for(var i=0;i<arguments.length;i++){
+                if(typeof arguments[i]!=='number')
+                    throw 'not a number';
+                 if(x>0)
+                return x;
+            else
+                return -x;
+            }
+
+        };
+        console.log("-90的绝对值是:"+abs(-90));
+
+        console.log("用变量abs定义的匿名函数得出98的绝对值是:"+abs(98));
+        //console.log("用变量abs定义的匿名函数得任意参数都不传的绝对值是:"+abs());
+        //不用参数，用arguments传参
+        function absFunc(){
+            if(arguments.length==0){
+                return 0;
+            }
+            var x=arguments[0];
+            return x>0?x:-x;
+        }
+        console.log("利用arguments的函数,得90的绝对值为:"+absFunc(90));
+        function foo(a,b,c){
+            if(arguments.length===2){
+                c=b;
+                b=null;
+            }
+        }
+        console.log("利用arguments去判断参数的长度"+foo(23,213));
+        function sum(...reset){
+            var i,args=[];
+            for(i=1;i<=100;i++){
+                args.push(i);
+            }
+            if(sum()!==0){
+                console.log("测试失败,sum()="+sum());
+            }else if(sum(1)!==1){
+                console.log("测试失败:sum(1)="+sum(1));
+            }else if(sum(2,3)!==5){
+                console.log("测试失败:sum(2,3)="+sum(2,3));
+            }else if(sum.apply(null,args)!=5050){
+                console.log("测试失败:sum(1,2,3,...,100)="+sum(null,args));
+            }else{
+                console.log("测试成功");
+            }
+        }
+        function calCircle(r,pi){
+            if(arguments.length==1){
+                pi=3.14
+                return r*r*pi;
+
+            }
+            return r*r*pi;
+        }
+        // 测试:
+        console.log('计算calCircle(2)的值为:'+calCircle(2));
+        console.log('计算calCircle(2,3.14)的值为:'+calCircle(2));
+//JavaScript的函数在查找变量时从自身函数定义开始，从“内”向“外”查找。如果内部函数定义了与外部函数重名的变量，则内部函数的变量将“屏蔽”外部函数的变量。
+        function sumFun(){
+            var x=1;
+            function bar(){
+                var x='as';
+                console.log("x in bar()="+x);
+            }
+            console.log("x in foo()="+x);
+            bar();
+        }
+        sumFun();
+        /*console.log("x的值为:"+x);*/
+        //JavaScript的函数定义有个特点，它会先扫描整个函数体的语句，把所有申明的变量“提升”到函数顶部：
+     /*   function varUp(){
+            var x='hello'+y;
+            // console.log("x的值为:"+x);
+            alert(x);
+            y='bob';
+        }
+        varUp();*/
+        /////////////////
+        //此函数相当于以下这个函数 //
+        /*function varUp(){
+            var y;
+            var x='hello'+y;
+            alert(x);
+            y='bob';
+        }*/
+        /////////////////
+        //全局作用域
+        /////////////////////////
+        //不在任何函数内定义的变量就具有全局作用域 //
+        //全局作用域的变量实际上被绑定到window的一个属性：
+        /////////////////////////
+        ///
+         var abn=function(x){
+            if(x>0)
+                return x;
+            else
+                return -x;
+        };
+        console.log("abn是全局变量:"+window.abn);
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

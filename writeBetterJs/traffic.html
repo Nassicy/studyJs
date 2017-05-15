@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>写信号灯</title>
+    <style type="text/css" media="screen">
+        *{
+            margin:0;
+            padding: 0;
+        }
+        html,body{
+            height:100%;
+            width:100%;
+        }
+        .container{
+            display:flex;
+            display:-webkit-flex;
+            height:100%;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        #traffic {
+            width:400px;
+            height:200px;
+            background:#ffeedd;
+            list-style: none;
+            text-align: center;
+         }
+        #traffic > li span{
+            display: inline-block;
+            width:50px;
+            height: 50px;
+            background: gray;
+            margin:5px;
+            border-radius: 50%;
+        }
+        #traffic.stop li > span{
+            background:#a00;
+        }
+         #traffic.wait li > span{
+            background:#aa0;
+        }
+         #traffic.pass li > span{
+            background:#0a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <ul id="traffic" class="wait">
+            <li><span></span></li>
+            <li><span></span></li>
+            <li><span></span></li>
+        </ul>
+    </div>
+   <script type="text/javascript">
+       /*const traffic=document.getElementById('traffic');
+       (function reset(){
+           traffic.className = "wait";
+           setTimeout(function(){
+               traffic.className = "stop";
+               setTimeout(function(){
+                   traffic.className = "pass";
+                   setTimeout(reset,2000);
+               },2000)
+           },2000)
+       })();*/
+
+       /* const traffic = document.getElementById('traffic');
+
+        var stateList=["wait","stop","pass"];
+        var len=stateList.length;
+        var stateIndex=0;
+        setInterval(function(){
+            var state=stateList[stateIndex];
+            traffic.className = state;
+            stateIndex=(stateIndex+1) % len;
+            }, 2000);*/
+
+        const traffic = document.getElementById('traffic');
+
+        function poll(...fnList){
+            let stateIndex = 0;
+
+            return function(...args){
+                let fn = fnList[stateIndex++ % fnList.length];
+
+                return fn.apply(this,args);
+            }
+        }
+
+        function setState(state){
+            traffic.className = state;
+        }
+
+        /*let trafficStatePoll = poll(setState.bind(null,"wait"),
+                                    setState.bind(null,"stop"),
+                                    setState.bind(null,"pass"));
+
+        setInterval(trafficStatePoll,2000);*/
+
+        function wait(time){
+            return new Promise(resolve => setTimeout(resolve,time))
+        }
+        function reset(){
+            Promise.resolve()
+                   .then(setState.bind(null,"wait"))
+                   .then(wait.bind(null,1000))
+                   .then(setState.bind(null,"stop"))
+                   .then(wait.bind(null,2000))
+                   .then(setState.bind(null,"pass"))
+                   .then(wait.bind(null,3000))
+        }
+
+        reset();
+   </script>
+</body>
+</html>

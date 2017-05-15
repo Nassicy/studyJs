@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>学习数组中splice用法</title>
+        <script type="text/javascript" charset="utf-8">
+            //splice用法：
+            //1.删除 ，2个参数，第一个参数是删除的位置，第二个参数是删除的项
+            //2.插入 ，3个参数，第一个参数是起始位置，第二个是删除的项数，第三个参数是插入的项
+            //3.替换， 3个参数，第一个参数是起始位置，第二个参数是删除的项数，第三个参数是插入的项
+            var colors = ['red','green', 'blue'];
+            console.log("colors:" + colors);
+            var removed = colors.splice(0,1);//删除第一项
+            console.log("colors.splice(0,1):" + removed);
+
+            removed = colors.splice(1, 0, 'yellow', 'orange');
+            console.log("colors:"+colors);
+            console.log("colors.splice(1, 0, 'yellow', 'orange'):" + removed);
+
+            removed = colors.splice(1, 1, 'red', 'purple');
+            console.log("colors:" +colors);
+            console.log("colors.splice(1, 1, 'red', 'purple'):"+removed);
+
+            var arr=[1,2,3,4,3,2,5,6,7,6,5,4];
+            function unique1(arr) {
+                var result = [];
+                for(var i=0; i < arr.length; i++){
+                    if(result.indexOf(arr[i]) === -1) {
+                        result.push(arr[i]);
+                    }
+                }
+                return result;
+            }
+            console.log("arr:"+arr);
+            console.log("unique1(arr):"+unique1(arr));
+
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

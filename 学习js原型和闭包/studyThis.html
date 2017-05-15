@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>学习this</title>
+        <script type="text/javascript">
+            /////////////////////////////////////////////////
+            //函数中this到底取何值，是在函数真正被调用执行的时候确定的，函数定义的时候确定不了。
+            //不仅仅是构造函数的prototype，即便是在整个原型链中，this代表的也都是当前对象的值。//
+            ///////////////////////////////////////////////////
+
+            //1.构造函数,就是用来new对象的函数,构造函数的函数名第一个字母大写
+
+            function Foo(){
+                this.name='nassicy',
+                this.age=24;
+                console.log(this);
+            }
+
+            //函数作为构造函数用时，this代表new出来的对象
+            var f1=new Foo();//console.log(this),Foo{name:'nassicy',age:24};
+
+            //直接调用Foo函数时，this表示window对象
+            Foo()//console.log(this),Window;
+            console.log(f1.name);
+            console.log(f1.age);
+
+
+            //2.函数作为对象的一个属性
+
+            var obj={
+                x:10,
+                fn:function(){
+                    console.log(this);
+                    console.log(this.x);
+                }
+            };
+
+            //fn作为对象的一个属性，并且是作为对象的一个属性被调用，this就是obj对象
+            obj.fn();//console.log(this),Object{x:10,fn:function};  console.log(this.x),10
+
+            //fn不作为obj的一个属性被调用，
+            var fn1=obj.fn;
+            fn1();////console.log(this),window  console.log(this.x) undefined
+
+
+            //3.函数用call或apply调用
+
+            var obj={
+                x:12
+            };
+            var fn=function(){
+                console.log(this);
+                console.log(this.x);
+            }
+            fn.call(obj);//console.log(this) Object{x:12},  console.log(this.x) 12
+
+
+            //4.全局&调用普通函数
+
+            console.log(this===window); //全局环境下，this永远是window
+
+            var x=12;
+            var fn=function(){
+                console.log(this);
+                console.log(this.x);
+            }
+            fn();
+
+            var obj={
+                x:123,
+                fn:function(){
+                    var that=this;
+                    function f(){
+                        console.log(that);
+                        console.log(that.x);
+                    }
+                    f();
+                }
+            };
+            obj.fn();//console.log(this) window,  console.log(this.x) udnefined
+
+
+            //实例
+            //
+
+            function showThis () {
+              console.log(this)
+            }
+
+            showThis() // window
+            new showThis() // showThis
+
+            var boss1 = { name: 'boss1' }
+            showThis.call(boss1) // boss1
+
+
+           /* new showThis.call(boss1) // TypeError*/
+
+            var boss1showThis = showThis.bind(boss1)
+            boss1showThis() // boss1
+            new boss1showThis() // showThis
+
+            var a=10;
+            var foo={
+              a:20,
+              bar:function(){
+                  var a=30;
+                  return this.a;
+                }
+            }
+            //debugger
+            /*foo.bar()
+            //20
+            (foo.bar)()
+            //20
+            (foo.bar=foo.bar)()
+            //10
+            (foo.bar,foo.bar)()*/
+
+
+
+            var obj1={
+                name:'obj1',
+                fn:function(){
+                    console.log(this.name);
+                }
+            };
+            var obj2={
+                name:'obj2'
+            };
+            var obj3={
+                name:'obj3'
+            };
+            obj1.fn();
+            var newFn=obj1.fn();
+            newFn();
+            newFn.call(obj2);
+            obj3.fn=newFn;
+            obj3.fn();
+        </script>
+
+    </head>
+    <body>
+    </body>
+</html>

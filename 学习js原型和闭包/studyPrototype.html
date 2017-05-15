@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>深入理解原型链</title>
+        <script type="text/javascript">
+
+        ///////////////////////////
+        //每个函数都有一个属性叫做prototype。指向函数的原型对象，用来实现基于原型的继承与属性的共享//
+        //每个对象都有一个__proto__ ,指向创建该对象的函数的prototype。构成原型链，同样用于实现基于原型的继承 //
+        ///////////////////////////
+            function Fn(){
+                Fn.prototype.name='nassicy';
+                Fn.prototype.getAge=function(){
+                    return 24;
+                };
+            }
+
+            var fn=new Fn();
+            var test=new Object();
+            function test1(){};
+            test.prototype=fn.prototype;
+            test1.prototype=new Fn();
+            console.log(test1.prototype.__proto__===Fn.prototype)
+
+            console.log("fn.name:"+fn.name);
+            console.log("fn.getAge():"+fn.getAge());
+            console.log(fn.__proto__ === Fn.prototype);
+            console.log(fn.prototype);
+            console.log(Object.__proto__);
+            console.log(Function.prototype);
+
+            //////////////////////////////////////////////
+            //每个对象都有一个__proto__属性，指向创建该对象的函数的prototype。 //
+            //////////////////////////////////////////////
+
+            function Object(){};
+            console.log(Object.__proto__===Object.prototype)
+
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

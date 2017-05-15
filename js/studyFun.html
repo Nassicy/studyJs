@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>变量作用域</title>
+        <script type="text/javascript">
+        console.log("下面为变量申明提升的demo:");
+            function foo() {
+                var x = 'Hello, ' + y;
+                console.log("x的值为:"+x);
+                var y = 'Bob';
+            }
+            foo();
+            console.log("以下为验证js中无块作用域，只有函数作用域的demo:");
+            function forFun(){
+                for (var i = 0; i <= 100; i++) {
+                    var sum=0;
+                    sum +=i;
+                }
+                console.log("i="+i+","+"sum="+sum);
+            }
+            forFun();
+            console.log("ES6中使用let定义变量可以使得变量成为块作用域!");
+            console.log("ES6中使用const定义一个常量!");
+            //以下为关于作用域的demo
+            function foo() {
+                var x = 1;
+                if (x) {
+                    (function () {
+                        var x = 2;
+                        console.log("x的值为:"+x);
+                    }());
+                }
+                 console.log("x的值为:"+x);
+            }
+            foo();
+            var a = 10;
+            function test() {
+                a = 100;
+                console.log(a);
+                console.log(this.a);
+                var a;
+                console.log(a);
+            }
+            test();
+            var b= 1001;
+            function testB(){
+                console.log(b);
+                b = 101;
+                console.log(this.b);
+                console.log(b);
+            }
+            testB();
+            console.log(b);
+            function a(x,y){
+                y = function() { x = 2; };
+                return function(){
+                    var x = 3;
+                    y();
+                    console.log(x);
+                }.apply(this, arguments);
+            };
+            a();
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

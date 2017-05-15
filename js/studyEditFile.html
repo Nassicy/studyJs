@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>操作文件</title>
+        <style type="text/css" media="screen">
+            #test-img-preview{
+                border:1px solid #ddd;
+                width:400px;
+                height:400px;
+                margin:20px auto;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="test-img-preview">
+
+        </div>
+        <input type="file" name="" id="test-img">
+        <p id="showImgInfo"></p>
+    </body>
+    <script type="text/javascript">
+    var fileInput=document.getElementById('test-img'),
+        preview=document.getElementById('test-img-preview'),
+        showInfo=document.getElementById('showImgInfo');
+        fileInput.addEventListener('change', function(){
+            preview.style.backgroundImage="";
+            if(!fileInput.value){
+                showInfo.innerHTML="没有选择文件";
+                return;
+            }
+            var file=fileInput.files[0];
+                showInfo.innerHTML="文件:"+file.name+"<br/>"+"大小:"+file.size+"<br/>"+
+                                    "修改:"+file.lastModifiedDate;
+                if(file.type!="image/jpeg"&&file.type!=="image/png" && file.type!=="image/gif"){
+                    console.log("不是有效图片");
+                    return;
+                }
+                //读取文件
+                var reader=new FileReader();
+                reader.onload=function(e){
+                    var  data=e.target.result;
+                    preview.style.backgroundImage="url("+data+")";
+                };
+                reader.readAsDataURL(file);
+        })
+    </script>
+</html>

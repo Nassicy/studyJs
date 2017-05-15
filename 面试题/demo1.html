@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>练习面试题</title>
+        <script type="text/javascript">
+            /*
+            * 创建一个二进制相加函数，
+            * 根据传入的两个二进制数字符串返回一个相加的十进制的结果。
+            */
+           function calculate(num1,num2){
+                var result = 0,
+                result = parseInt(num1,2) + parseInt(num2,2);
+                return result;
+           }
+            console.log(calculate("10", "10") );   // => 4
+            console.log(calculate("10", "0")  );   // => 2
+            console.log(calculate("101", "10"));   // => 7
+
+            var string = "我的账户余额：2,235,467.20";
+            // 请用js计算出我到底有多少钱（输出Number类型数字，代码尽量简洁，考虑通用情况）
+
+
+            // 3.作用域
+            function person() {
+                return this.name;
+            }
+             var someOne = { name: 'Jenny', age: 18 };
+
+        // 此处如何输出 'Jenny'
+             console.log(person.apply(someOne));
+             console.log(person.call(someOne));
+             console.log(person.bind(someOne)());
+            var name = 'name1';
+            var people = {
+              name:'name2',
+              getName:function(){
+                return this.name;
+              }
+            }
+            console.log(people.getName()); // ?name2
+            var getName = people.getName;
+            console.log(getName());  // ?name1
+        </script>
+    </head>
+    <body>
+    </body>
+</html>
