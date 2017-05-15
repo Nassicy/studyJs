@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <style>
+    .container {
+        display: flex;
+        align-items: center;
+        /* 垂直居中 */
+        justify-content: center;
+        /* 水平居中 */
+    }
+
+    .container div {
+        width: 100px;
+        height: 100px;
+        background-color: pink;
+        /* 方便看效果 */
+    }
+    #demo-up {
+        width: 0;
+        height: 0;
+        border-left:20px solid transparent;
+        border-right:20px solid transparent;
+        border-bottom:40px solid  #009922;
+    }
+    #demo-right{
+        height:0;
+        width:0;
+        border-top:20px solid transparent;
+        border-bottom:20px solid transparent;
+        border-left:40px solid #332211;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <div id="demo-up"></div>
+            <div id="demo-right"></div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css" media="screen">
+            *{
+                margin:0;
+                padding:0;
+                box-sizing: border-box;
+            }
+           html,body{
+               height:100%;
+               width:100%;
+           }
+           #main{
+                height:100%;
+                width:100%;
+                color:red;
+
+            }
+            .left{
+                border:1px solid #ddd;
+                background:#000;
+                height:100%;
+                padding:10px;
+            }
+            .content{
+                border:1px solid #ddd;
+                background:#eee;
+                height:100%;
+                padding:10px;
+            }
+            /*左边固定，右边自适应布局，方法1*/
+             /*.left-box{
+              width:200px;
+              float:left;
+              margin-right: -100%;
+          }
+          .right-box{
+              margin-left: 200px;
+          } */
+
+          /*方法2*/
+           #main{
+          display: flex;
+        }
+        .left-box{
+          flex:0 0 200px;
+          width:200px;
+        }
+        .right-box{
+          flex:1;
+        }
+          /*方法3
+          #main{
+            font-size: 0;
+            min-width: 1300px;
+          }
+          .left-box{
+            display:inline-block;
+            vertical-align: top;
+            width:200px;
+            font-size:14px;
+          }
+          .right-box{
+            display:inline-block;
+            vertical-align: top;
+            font-size:14px;
+            width:80%;
+          }*/
+          /* .left-box,.right-box{
+            min-height:200px;
+            height:auto;
+            height:200px;
+          } */
+        </style>
+    </head>
+    <body>
+        <div id="main">
+            <div class="left left-box">左侧定宽内容区域</div>
+            <div class="content right-box">
+               右侧自适应内容区域
+            </div>
+        </div>
+       <!--  <div style="width: 200px;height: 200px;background: #cccccc;margin-bottom: 30px;"></div>
+       <div style="width: 200px;height: 200px;background: #333333;margin-top: 30px;margin-bottom:30px;">   </div>
+       <div style="width: 200px;height: 200px;background: #666666;margin-top: 50px;"></div>
+       <div style="overflow: auto;width: 100%;">
+           <div style="float: left;width: 100%;">
+       <div style="margin-bottom: 30px;width: 100px;height: 100px;background-color: #cccccc;"></div>
+           </div>
+           <div style="float: left;width: 100%;">
+       <div style="margin-top: 50px;width: 100px;height: 100px;background-color: #333333;"></div>
+           </div>
+       </div> -->
+    </body>
+</html>

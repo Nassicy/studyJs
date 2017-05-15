@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    /*  div.middle{
+              width:40%;
+              height:30%;
+              background:#fefdaa;
+              position:absolute;
+              top:50%;
+              left:50%;
+              margin-left:-20%;
+              margin-top:-15%;
+              padding:10px;
+              box-sizing: border-box;
+          }
+        div.middle{
+          position:absolute;
+          top:0;
+          left:0;
+          bottom:0;
+          right: 0;
+          height:400px;
+          width:300px;
+          background:#dee;
+        }
+        div.middle{
+          position:absolute;
+          top:0;
+          left:0;
+          right:0;
+          bottom:0;
+          margin:auto;
+          padding:10px;
+          background:#030;
+          color:#fff;
+          height:24%;
+          width:40%;
+          overflow: auto;
+      }*/
+
+   /* html,
+    body {
+        height: 100%;
+        width: 100%;
+    }
+    .box{
+            display: flex;
+            height:100%;
+            justify-content: center;
+            align-items: center;
+      }*/
+    /*  .box:before{
+          content:'';
+          display:inline-block;
+          vertical-align:middle;
+          height:100%;
+              }
+
+    .box {
+        text-align: center;
+    }
+
+    .middle {
+        vertical-align: middle;
+        display: inline-block;
+        font-size: 16px;
+        background: #030;
+        color: #fff;
+    }
+
+    .box:after {
+        content:'';
+  width:0;
+  height:100%;
+  display:inline-block;
+  vertical-align:middle;
+
+    }
+*/
+   /* .box .middle {
+        height: 24%;
+        width: 40%;
+        padding: 10px;
+        overflow: auto;
+        background: #030;
+        display: inline-block;
+        color: #fff;
+    }
+    */
+   .box{
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      background:#ee00cc;
+      color:#fff;
+      padding:10px;
+   }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="middle">
+            绝对居中（AbsoluteCentering）也适用于图片。对图片自身应用class类或CSS样式，并给图片添加height:auto样式，图片会自适应居中显示，如果外层容器可以resize则随着容器的重绘，图片也相应重绘，始终保持居中。 需要注意的是height:auto虽然对图片居中有用，但如果是在图片外层的内容块上应用了height:auto则会产生一些问题：规则的内容块会被拉伸填充整个容器。这时，我们可以使用可变高度(Variable Height)方式解决这个问题。问题的原因可能是渲染图片时要计算图片高度，这就如同你自己定义了图片高度一样，浏览器得到了图片高度就不会像其他情况一样去解析margin:auto垂直居中了。所以我们最好对图片自身应用这些样式而不是父元素。
+        </div>
+    </div>
+</body>
+
+</html>

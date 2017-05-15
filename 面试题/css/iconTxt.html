@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>小图标文字对齐的终极法则</title>
+        <style type="text/css" media="screen">
+            *{
+                padding:0;
+                margin:0;
+            }
+            body{
+                font:14px/1.42858 'microsoft yahei',arial,sans-serif;
+            }
+            .icon{
+                display: inline-block;
+                width:20px;
+                height:20px;
+                background:url(../images/delete.png) no-repeat center;
+                white-space: nowrap;
+            }
+            .icon:before {
+                /* 伪元素插入空格文本 */
+                content: '\3000';
+            }
+            p{
+                line-height: 20px;
+                font-size:14px;
+            }
+            a{
+                color:transparent;
+
+            }
+        </style>
+    </head>
+    <body>
+        <strong>情形1，空标签</strong>
+        <p><i class="icon"></i> 删除</p>
+        <strong>情形2，内部有文字</strong>
+        <p><a href="javascript:" class="icon">删除</a> 后面的文字</p>
+    </body>
+</html>

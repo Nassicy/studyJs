@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>微信看到的js题目</title>
+        <script type="text/javascript">
+            var add = function(x) {
+                var sum = 1;
+                var tmp = function(x) {
+                    sum = sum +x;
+                    // debugger
+                    return tmp;
+                };
+                tmp.toString = function () {
+                    return sum;
+                }
+                return tmp;
+            };
+            console.log(add(1)); //1
+            console.log(add(1));//function 1
+
+            console.log(add(1)(2)); //3
+            console.log(add(1)(2));//function 3
+            Function.prototype.before = function(fn) {
+                var self = this;
+                return function() {
+                   //debugger
+                    fn.call(this);
+                    self.apply(this, arguments);
+                };
+            }
+            function repeat() {
+                console.log('上报数据!');
+            }
+            function submit() {
+                console.log('提交数据!');
+            }
+            submit.before(repeat)();
+
+            var addFun = function() {
+                var result = 0;
+                var arg = Array.prototype.slice.call(arguments);
+                if (arg.length) {
+                    result = arg.reduce(function (a,b) {
+                        return a+b;
+                    });
+                }
+                var temp = function() {
+                    result = Array.prototype.slice.call(arguments).reduce(function (a, b) {
+                        return a+b;
+                    }, result);
+                    return temp;
+                };
+                temp.toString = function () {
+                    return result;
+                };
+                return temp;
+            };
+            console.log(addFun(3,3));
+            console.log(addFun(3)(5));
+            console.log(addFun(3)(5)(4,5)(1,1,1,1));
+
+            var name="global";
+            function foo() {
+                console.log(name);//global
+            }
+            function fooOuter1() {
+                var name="local";
+                foo();
+            }
+            fooOuter1();
+            function fooOuter2() {
+                var name = "local";
+                function foo() {
+                    console.log(name);//local
+                }
+                foo();
+            }
+            fooOuter2();
+            var arr=[];
+            arr.push(1);
+            arr.push(2);
+            arr.arr = "c";
+            console.log(arr[1]);//2
+            console.log(arr.length);//3
+            console.log(arr);
+            var str = 'hello';
+            (function() {
+                var bar ="world";
+                console.log("自执行的str+bar:"+str + bar);
+            })();
+            console.log("全局的str+bar结果:"+str + bar);
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

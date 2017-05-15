@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>数组去重</title>
+    <script type="text/javascript">
+    'use strict';
+    let arr = [1, 'a', undefined, null, NaN, 1, 'a', undefined, null, NaN,5,6,6,7,7,8];
+  /*  Array.prototype.remDub = Array.prototype.remDub || function() {
+        //return Array.from(new Set(this));
+        return [...new Set(this)];
+    };
+    console.log(arr.remDub());
+        // ES6
+    function unique (arr) {
+      const seen = new Map()
+      return arr.filter((a) => !seen.has(a) && seen.set(a, 1))
+    }
+    // or*/
+    function unique (arr) {
+      return Array.from(new Set(arr))
+    }
+    console.log(unique(arr));
+    function remDub(arr) {
+        var result = [];
+        for (var i = 0; i < arr.length; i++) {
+            var temp = arr[i];
+            if(result.indexOf(temp) === -1) {
+                result.push(temp);
+            }
+        }
+        return result;
+    }
+    console.log(remDub(arr));
+    function unique1(arr) {
+        var result = [];
+        var len = arr.length;
+        for (var i = 0; i < len; i++) {
+            for(var j = i + 1 ; j < len; j++) {
+                if (arr[j] === arr[i]){
+                    j = ++ i;
+                }
+            }
+            result.push( arr[i]);
+                   /* debugger*/
+        }
+        return result;
+    }
+    console.log(unique1(arr));
+    function unique2(arr) {
+        var result = [];
+        var len = arr.length;
+        var temp = {};
+        var tmpKey;
+       /*  debugger*/
+        for(var  i = 0; i < len; i ++) {
+            tmpKey = typeof arr[i] + arr[i];
+            if (!temp[tmpKey]) {
+                temp[tmpKey] = 1;
+                result.push(arr[i]);
+            }
+        }
+        return result;
+    }
+    console.log(unique2(arr));
+    function unique3(arr) {
+        var result = [];
+        debugger
+        arr.forEach( function(item) {
+            if (!result.includes(item)) {
+                result.push(item);
+            }
+        });
+        return result;
+    }
+    console.log(unique3(arr));
+
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

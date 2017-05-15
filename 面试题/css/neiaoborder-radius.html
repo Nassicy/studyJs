@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>实现内凹圆角</title>
+    <style type="text/css" media="screen">
+    .container{
+        width:100px;
+        height:100px;
+        position: relative;
+        margin: 50px auto;
+        color:#000;
+        background:#eedd00;
+        text-align: center;
+        line-height: 100px;
+        background: radial-gradient(circle at top right,#fff 16px,#eedd00 0) top right,
+                    radial-gradient(circle at top left, #fff 16px,#eedd00 0) top left,
+                    radial-gradient(circle at bottom left,#fff 16px,#eedd00 0) bottom left,
+                    radial-gradient(circle at bottom right,#fff 16px,#eedd00 0) bottom right;
+        background-size: 50% 50%;
+        background-repeat: no-repeat;
+    }
+   /*  .box {
+       position:absolute;
+       top:0;
+       right:0;
+       width: 24px;
+       height: 24px;
+       background: radial-gradient(circle at top right,#fff 16px,#eedd00 0) top right;
+   }
+    .box1 {
+       position:absolute;
+       top:0;
+       left:0;
+       width: 24px;
+       height: 24px;
+       background: radial-gradient(circle at top left, #fff 16px,#eedd00 0) top left;
+
+   }
+    .box2 {
+       position:absolute;
+       bottom:0;
+       left:0;
+       width: 24px;
+       height: 24px;
+       background: radial-gradient(circle at bottom left,#fff 16px,#eedd00 0) bottom left;
+   }
+   .box3 {
+       position:absolute;
+       bottom:0;
+       right:0;
+       width: 24px;
+       height: 24px;
+       background: radial-gradient(circle at bottom right,#fff 16px,#eedd00 0) bottom right;
+   } */
+    .radius{
+        width:100px;
+        height:100px;
+        background-color: #ADD8E6;
+        background: radial-gradient(circle at top left,transparent 15px,#ADD8E6 0) top left,
+                           radial-gradient(circle at top right,transparent 15px,#ADD8E6 0) top right,
+                           radial-gradient(circle at bottom right,transparent 15px,#ADD8E6 0) bottom right,
+                           radial-gradient(circle at bottom left,transparent 15px,#ADD8E6 0) bottom left;
+
+                background-size: 50% 50%;
+                background-repeat: no-repeat;
+    }
+    </style>
+</head>
+<body>
+<div class="container">
+  <!--   <div class="box"></div>
+  <div class="box1"></div>
+  <div class="box2"></div>
+  <div class="box3"></div>
+  <span>1</span> -->
+</div>
+<div class="radius"></div>
+</body>
+
+</html>

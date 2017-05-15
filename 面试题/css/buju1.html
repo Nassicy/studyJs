@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css" media="screen">
+
+        *{
+                margin:0;
+                padding:0;
+                box-sizing: border-box;
+            }
+             html,body{
+               height:100%;
+               width:100%;
+           }
+            #main{
+                height:100%;
+                width:100%;
+                color:red;
+
+            }
+        #left {
+            background-color: #000;
+            float: left;
+            width: 200px;
+            height:100%;
+            margin-right: -100%;
+        }
+
+        #content {
+            float: left;
+            width: 100%;
+            height:100%;
+        }
+
+        #contentInner {
+             height:100%;
+            margin-left: 200px;/*==等于左边栏宽度值==*/
+            background-color: #eee;
+        }
+
+        </style>
+    </head>
+    <body>
+    <div id="main">
+    <div id="left">左侧内容区域</div>
+    <div id="content">
+        <div id="contentInner">右侧自适应区域</div>
+    </div>
+</div>
+
+
+    </body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>事件委托</title>
+        <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script>
+            window.onload=function(){
+                var oBtn = document.getElementById("btn");
+                var oUl=document.getElementById("ul-box");
+                var aLi=oUl.getElementsByTagName("li");
+                 /*for(var i=0;i<aLi.length;i++){
+                    aLi[i].onmouseover = function(){
+                        this.style.background='#ded0ae';
+                    }
+                    aLi[i].onmouseout = function(){
+                        this.style.background = '#fff';
+                    }
+                }
+                oBtn.onclick = function(){
+                    var oLi = document.createElement('li');
+                    oLi.innerHTML = "香蕉";
+                    oUl.appendChild(oLi);
+                }*/
+                function mouseHover(){
+        for(var i=0;i<aLi.length;i++){
+            aLi[i].onmouseover = function(){
+                this.style.background='red';
+            }
+            aLi[i].onmouseout = function(){
+                this.style.background = '#fff';
+            }
+        }
+    }
+     oBtn.onclick = function(){
+        var oLi = document.createElement('li');
+        oLi.innerHTML = "香蕉";
+        oUl.appendChild(oLi);
+         mouseHover();
+    }
+                /*事件委托*/
+               /* oUl.onmouseover=function(ev){
+                    var ev=ev ||window.event;
+                    var target = ev.target || ev.srcElement;
+                    if(target.nodeName.toLowerCase()=="li"){
+                        target.style.background = "#de1234";
+                    }
+                }
+                oUl.onmouseout=function(ev){
+                    var ev=ev ||window.event;
+                    var target = ev.target || ev.srcElement;
+                    if(target.nodeName.toLowerCase()=="li"){
+                        target.style.background = "#fff";
+                    }
+                }*/
+            }
+        </script>
+        <style>
+            #ul-box{
+                height:400px;
+                width:300px;
+                margin:0 auto;
+                border:10px solid #eedd00;
+                overflow:auto;
+            }
+            #ul-box li:hover{
+                cursor:pointer;
+            }
+        </style>
+    </head>
+    <body>
+    <input type="button" name="" id="btn" value="添加" />
+        <ul id="ul-box">
+            <li>苹果1</li>
+            <li>苹果2</li>
+            <li>苹果3</li>
+            <li>苹果4</li>
+            <li>苹果5</li>
+            <li>苹果6</li>
+            <li>苹果7</li>
+            <li>苹果8</li>
+            <li>苹果9</li>
+            <li>苹果10</li>
+            <li>苹果11</li>
+        </ul>
+    </body>
+</html>
